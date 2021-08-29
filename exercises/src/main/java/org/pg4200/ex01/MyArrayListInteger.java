@@ -1,14 +1,15 @@
 package org.pg4200.ex01;
 
 public class MyArrayListInteger {
-    private Integer[] integerList;
+    private Integer[] integerData;
+    // Actual used size
     private int size;
 
-    public  MyArrayListInteger(int maxSize) {
-        integerList = new Integer[maxSize];
+    public MyArrayListInteger(int maxSize) {
+        integerData = new Integer[maxSize];
     }
 
-    // Call the other constructor
+    // Call the other constructor with size 10 if not specified
     public MyArrayListInteger() {
         this(10);
     }
@@ -18,16 +19,16 @@ public class MyArrayListInteger {
             System.out.println("Index does not exist.");
             return null;
         }
-        return integerList[index];
+        return integerData[index];
     }
 
     public void add(Integer value) {
         // Size-value because that number is the last index
-        integerList[size] = value;
+        integerData[size] = value;
         size++;
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 }
