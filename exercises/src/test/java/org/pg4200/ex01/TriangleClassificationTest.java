@@ -1,38 +1,43 @@
 package org.pg4200.ex01;
 
 import org.junit.jupiter.api.Test;
+import org.pg4200.ex01.TriangleClassification.Classification;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import static org.pg4200.ex01.TriangleClassification.Classification.*;
+import static org.pg4200.ex01.TriangleClassification.classify;
 
 public class TriangleClassificationTest {
 
     @Test
     public void testNotTriangle() {
-        assertEquals(TriangleClassification.classify(0,2,5),
-                TriangleClassification.Classification.NOT_A_TRIANGLE);
+        Classification notATriangle1 = classify(0,2,5);
+        assertEquals(NOT_A_TRIANGLE, notATriangle1);
 
-        assertEquals(TriangleClassification.classify(100,3,3),
-                TriangleClassification.Classification.NOT_A_TRIANGLE);
+        Classification notATriangle2 = classify(100,2,5);
+        assertEquals(NOT_A_TRIANGLE, notATriangle2);
     }
 
     @Test
     public void testEquilateral() {
-        assertEquals(TriangleClassification.classify(2,2,2),
-                TriangleClassification.Classification.EQUILATERAL);
-        assertNotEquals(TriangleClassification.classify(5,9,12),
-                TriangleClassification.Classification.EQUILATERAL);
+        Classification equilateral = classify(40,40,40);
+        assertEquals(EQUILATERAL, equilateral);
+
+        Classification notEquilateral = classify(5, 9, 5);
+        assertNotEquals(EQUILATERAL, notEquilateral);
     }
 
     @Test
     public void testIsosceles() {
-        assertEquals(TriangleClassification.classify(5, 5, 3),
-                TriangleClassification.Classification.ISOSCELES);
+        Classification isosceles = classify(5, 5, 3);
+        assertEquals(ISOSCELES, isosceles);
     }
 
     @Test
     public void testScalene() {
-        assertEquals(TriangleClassification.classify(5,3,4),
-                TriangleClassification.Classification.SCALENE);
+        Classification scalene = classify(5,3,4);
+        assertEquals(SCALENE, scalene);
     }
 }
