@@ -61,8 +61,8 @@ public class MyArrayListIntegerTest {
        assertEquals(a, list.get(0));
        assertEquals(b, list.get(1));
        assertEquals(c, list.get(2));
-       assertEquals(b, list.get(1));
-       assertEquals(a, list.get(0));
+       assertEquals(b, list.get(3));
+       assertEquals(a, list.get(4));
    }
 
    @Test

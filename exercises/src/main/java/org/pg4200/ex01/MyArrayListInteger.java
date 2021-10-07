@@ -1,7 +1,7 @@
 package org.pg4200.ex01;
 
 public class MyArrayListInteger {
-    private Integer[] integerData;
+    private final Integer[] integerData;
     // Actual used size
     private int size;
 
