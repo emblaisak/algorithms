@@ -42,8 +42,42 @@ public class MyBiDirectionalLinkedList<T> implements MyList<T> {
 
     }
 
+//    Get node as opposed to the value
     private ListNode getNode(int index) {
-        return new ListNode();
+        if (isValidIndex(index)) {
+
+//            Is index in the "left" half of the list => start from head
+            if(index <= size() / 2) {
+                ListNode current = head;
+                int counter = 0;
+
+                while (current != null) {
+                    if (counter == index) {
+                        return current;
+                    } else {
+                        current = current.next;
+                        counter++;
+                    }
+                }
+            } else {
+//            Starting from tail
+                ListNode current = tail;
+                int counter = size() - 1;
+
+                while (current != null) {
+                    if (counter == index) {
+                        return current;
+                    } else {
+                        current = current.previous;
+                        counter--;
+                    }
+                }
+            }
+        } else {
+            throw new NullPointerException("Index is valid - node not found");
+        }
+
+        return null;
     }
 
     private boolean isValidIndex(int index) {
