@@ -94,17 +94,52 @@ public class MyBiDirectionalLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public void add(T value) {
-        MyList.super.add(value);
-    }
+    public void add(int index, T value) {
 
-    @Override
-    public void add(int index, Object value) {
+        if (isValidIndex(index)) {
+            ListNode node = new ListNode();
+            node.value = value;
+
+//            Now the node is created and its value stored. Now to decide what index it should receive.
+
+            if (head == null) {
+//                List is empty
+                head = tail = node;
+            } else if (index == 0) {
+
+                // Head's previous is assign to the new node, node's next is assign to head and new head is node
+                head.previous = node;
+                node.next = head;
+                head = node;
+
+            } else if (index == size) {
+
+                tail.next = node;
+                node.previous = tail;
+                tail = node;
+
+            } else {
+
+//                The list is not empty, and requested index is not head or tail
+                ListNode target = getNode(index);
+                ListNode beforeTarget = target.previous;
+
+                beforeTarget.next = node;
+                node.previous = beforeTarget;
+
+//                Move the node on the requested index to the right
+                node.next = target;
+                target.previous = node;
+            }
+
+            size++;
+
+        }
 
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 }
