@@ -83,7 +83,7 @@ public class MyBiDirectionalLinkedList<T> implements MyList<T> {
     }
 
     private boolean isValidIndex(int index) {
-        if(index < 0 || index >= size) {
+        if(index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         } else {
             return true;
