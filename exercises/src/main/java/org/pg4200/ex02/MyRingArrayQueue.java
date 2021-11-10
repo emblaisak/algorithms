@@ -15,7 +15,7 @@ public class MyRingArrayQueue<T> implements MyQueue<T> {
         data = new Object[capacity];
     }
 
-//    ADD DATA TO THE TAIL
+//    ADD DATA TO THE TAIL AND MOVE TAIL
     @Override
     public void enqueue(T value) {
 
@@ -53,28 +53,27 @@ public class MyRingArrayQueue<T> implements MyQueue<T> {
             } else {
                 // THERE IS NO FREE SPACE - CREATE NEW INTERNAL ARRAY
                 Object[] bigger = new Object[data.length * 2];
+                int newSize = bigger.length;
 
                 // MOVE TO NEW ARRAY FROM OLD HEAD, BEFORE WRAP
                 int k = 0;
-                for (int i = head; i < data.length; i++) {
+                for (int i = head; i < data.length - head - 1; i++) {
                     bigger[k] = data[i];
                     k++;
                 }
 
                 // MOVE WRAPPED VALUES TO NEW ARRAY
-                k = bigger.length - 1;
                 for (int i = 0; i < head; i++) {
                     bigger[k] = data[i];
                 }
 
-                data = bigger;
                 head = 0;
-                tail = data.length - 1;
-
-                data[tail] = value;
-
+                tail = data.length;
+                data = bigger;
             }
         }
+
+        data[tail] = value;
     }
 
 //    REMOVES DATA FROM HEAD, MOVES HEAD-INDEX AND RETURNS DELETED OBJECT
@@ -109,6 +108,10 @@ public class MyRingArrayQueue<T> implements MyQueue<T> {
 
         if (head < 0) {
             return 0;
+        } else if (tail < head) {
+            int size = data.length - head;
+            size += tail + 1;
+            return size;
         } else {
             return tail - head + 1;
         }

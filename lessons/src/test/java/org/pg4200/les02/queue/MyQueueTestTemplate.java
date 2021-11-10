@@ -177,15 +177,20 @@ public abstract class MyQueueTestTemplate {
 
         assertEquals(quarter, queue.size());
 
-        for(int i=half; i< n; i++){
+        int size = queue.size();
+
+        for(int i=half; i < n; i++){
             queue.enqueue(i);
+            size = queue.size();
         }
 
+//        VALUE AT INDEX = 139 & 640 - THERE IS A GAP
         assertEquals(quarter + half, queue.size());
 
-        for(int i=quarter; i< n; i++){
+        for(int i = quarter; i < n; i++){
             int res = queue.dequeue();
             assertEquals(i, res);
+            size = queue.size();
         }
 
         assertEquals(0, queue.size());
