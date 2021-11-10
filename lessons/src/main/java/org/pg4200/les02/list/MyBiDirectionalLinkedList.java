@@ -90,7 +90,7 @@ public class MyBiDirectionalLinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        return getNode(index).value;
     }
 
     @Override
