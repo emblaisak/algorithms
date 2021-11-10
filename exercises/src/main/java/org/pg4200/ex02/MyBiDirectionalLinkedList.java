@@ -1,4 +1,6 @@
-package org.pg4200.les02.list;
+package org.pg4200.ex02;
+
+import org.pg4200.les02.list.MyList;
 
 public class MyBiDirectionalLinkedList<T> implements MyList<T> {
 
