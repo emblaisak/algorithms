@@ -1,16 +1,57 @@
 package org.pg4200.ex03;
 
+import java.util.Comparator;
+
 public class OptimizedBubbleSort {
-    public <T> int sort(T[] array, MyStringComparator comparator, boolean isOptimized) {
 
-//        If isOptimized, run a better version of bubble sort. For instance,
-//        the elements after the last sorted element is necessarily sorted.
+    /*
+    If isOptimized, run a better version of bubble sort. For instance,
+    elements after the last sorted element in that iteration are necessarily sorted.
+    */
 
-        for (int i = 0; i < array.length; i++ ) {
-//            boolean isSorted = comparator.compare(array[i], array[i+1]);
-        }
+    public <T> int sort(T[] array, Comparator comparator, boolean isOptimized) {
 
-        //        Return the number of times the comparator is called.
-        return 3;
+        int numberOfComparisons = 0;
+        boolean isSorted = false;
+
+        do {
+
+            if (!isOptimized) {
+
+                boolean hasSorted = false;
+
+                for (int i = 0; i < array.length - 1; i++) {
+                    int compareResult = comparator.compare(array[i], array[i+1]);
+
+//                If result is 0 or positive, is already sorted or equal.
+                    if (compareResult > 0) {
+                        T value = array[i];
+
+                        array[i] = array[i + 1];
+                        array[i + 1] = value;
+                        hasSorted = true;
+                    }
+
+                    numberOfComparisons++;
+                }
+
+                if (!hasSorted) {
+                    isSorted = true;
+                }
+
+            } else {
+
+                if (array == null || array.length == 0 || array.length == 1) {
+                    numberOfComparisons = 0;
+                }
+
+            }
+
+
+
+        } while(!isSorted);
+
+        return numberOfComparisons;
     }
+
 }
