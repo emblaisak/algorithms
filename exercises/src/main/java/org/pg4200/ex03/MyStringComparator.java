@@ -2,10 +2,16 @@ package org.pg4200.ex03;
 
 import java.util.Comparator;
 
-public class MyStringComparator<String> implements Comparator<String> {
+public class MyStringComparator implements Comparator<String> {
+
+    //        Returns positive number if sorted alphabetically
+    //        Returns 0 if equal
+    //        Returns negative if not sorted
+
     @Override
-    public int compare(String o1, String o2) {
-        //        Returns positive number if in correct order
-        return 0;
+    public int compare(String a, String b) {
+        int result = a.compareTo(b);
+        return result;
     }
+
 }
