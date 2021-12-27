@@ -1,5 +1,6 @@
 package org.pg4200.ex03;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +13,9 @@ public class OptimizedBubbleSortTest {
     Reach 100% statement coverage
      */
 
+    int numberOfNonOptComparisons;
+    int numberOfOptComparisons;
+
     @Test
     public void testNonOptimizedStringArray() {
         String[] actualArray = new String[]{"c", "b", "a", "d", "e", "f"};
@@ -20,11 +24,28 @@ public class OptimizedBubbleSortTest {
         MyStringComparator comparator = new MyStringComparator();
         OptimizedBubbleSort sorter = new OptimizedBubbleSort();
 
-        int numberOfComparisons = sorter.sort(actualArray, comparator, false);
-        System.out.println("Number of comparisons are: " + numberOfComparisons);
+        numberOfNonOptComparisons = sorter.sort(actualArray, comparator, false);
+        System.out.println("Number of comparisons are: " + numberOfNonOptComparisons);
 
         assertArrayEquals(expectedArray, actualArray);
-        assertTrue(numberOfComparisons > 0);
+        assertTrue(numberOfNonOptComparisons > 0);
+    }
+
+    @Test
+    public void testOptimizedStringArray() {
+        String[] actualArrayNonOpt = new String[]{"c", "b", "a", "d", "e", "f"};
+        String[] actualArrayOpt = new String[]{"c", "b", "a", "d", "e", "f"};
+        String[] expectedArray = new String[]{"a", "b", "c", "d", "e", "f"};
+
+        MyStringComparator comparator = new MyStringComparator();
+        OptimizedBubbleSort sorter = new OptimizedBubbleSort();
+
+        numberOfNonOptComparisons = sorter.sort(actualArrayNonOpt, comparator, false);
+        numberOfOptComparisons = sorter.sort(actualArrayOpt, comparator, true);
+        System.out.println("Number of comparisons are: " + numberOfOptComparisons);
+
+        assertArrayEquals(expectedArray, actualArrayOpt);
+        assertTrue(numberOfNonOptComparisons > (numberOfOptComparisons * 2));
     }
 
 }
