@@ -28,4 +28,12 @@ public class GameUser {
     public void setPoints(int points) {
         this.points = points;
     }
+
+    public boolean equals(GameUser otherUser) {
+        if (this.userId == otherUser.getUserId() && this.points == otherUser.points) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
