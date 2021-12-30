@@ -33,7 +33,7 @@ public class OptimizedBubbleSortTest {
     @Test
     public void testOptimizedStringArray() {
         String[] actualArrayNonOpt = new String[]{"c", "b", "a", "d", "e", "f"};
-        String[] actualArrayOpt = actualArrayNonOpt;
+        String[] actualArrayOpt = new String[]{"c", "b", "a", "d", "e", "f"};
         String[] expectedArray = new String[]{"a", "b", "c", "d", "e", "f"};
 
         MyStringComparator comparator = new MyStringComparator();
@@ -54,6 +54,7 @@ public class OptimizedBubbleSortTest {
                 new GameUser("Sting", 20),
                 new GameUser("Babylon", 3),
                 new GameUser("Leo", 20),
+                new GameUser("Leo", 20),
                 new GameUser("Kleopatra", 12),
                 new GameUser("Alan", 4),
 
@@ -63,6 +64,7 @@ public class OptimizedBubbleSortTest {
                 new GameUser("Babylon", 3),
                 new GameUser("Alan", 4),
                 new GameUser("Kleopatra", 12),
+                new GameUser("Leo", 20),
                 new GameUser("Leo", 20),
                 new GameUser("Sting", 20),
                 new GameUser("Lark", 25),
@@ -78,6 +80,8 @@ public class OptimizedBubbleSortTest {
             assertTrue(actualArray[i].equals(actualArray[i]));
         }
 
+        assertFalse(expectedArray[3].equals(actualArray[0]));
+
         assertTrue(numberOfNonOptComparisons > 0);
     }
 
@@ -89,19 +93,18 @@ public class OptimizedBubbleSortTest {
                 new GameUser("Babylon", 3),
                 new GameUser("Leo", 20),
                 new GameUser("Kleopatra", 12),
-                new GameUser("Alan", 4),
-
+                new GameUser("Alan", 4)
         };
 
         GameUser[] actualArrayOpt = actualArrayNonOpt;
 
         GameUser[] expectedArray = new GameUser[]{
-                new GameUser("Babylon", 3),
-                new GameUser("Alan", 4),
-                new GameUser("Kleopatra", 12),
-                new GameUser("Leo", 20),
-                new GameUser("Sting", 20),
                 new GameUser("Lark", 25),
+                new GameUser("Sting", 20),
+                new GameUser("Babylon", 3),
+                new GameUser("Leo", 20),
+                new GameUser("Kleopatra", 12),
+                new GameUser("Alan", 4)
         };
 
         GameUserComparator comparator = new GameUserComparator();
@@ -117,6 +120,32 @@ public class OptimizedBubbleSortTest {
         }
 
         assertTrue(numberOfNonOptComparisons > (numberOfOptComparisons * 2));
+    }
+
+    @Test
+    public void testEmptyStringArray() {
+        String[] actualArray = new String[]{};
+        String[] expectedArray = new String[]{};
+
+        MyStringComparator comparator = new MyStringComparator();
+        OptimizedBubbleSort sorter = new OptimizedBubbleSort();
+
+        numberOfNonOptComparisons = sorter.sort(actualArray, comparator, false);
+        System.out.println("Number of comparisons are: " + numberOfNonOptComparisons);
+
+        assertArrayEquals(expectedArray, actualArray);
+        assertTrue(numberOfNonOptComparisons == 0);
+    }
+
+    @Test
+    public void testNullStringArray() {
+        MyStringComparator comparator = new MyStringComparator();
+        OptimizedBubbleSort sorter = new OptimizedBubbleSort();
+
+        numberOfNonOptComparisons = sorter.sort(null, comparator, false);
+        System.out.println("Number of comparisons are: " + numberOfNonOptComparisons);
+
+        assertTrue(numberOfNonOptComparisons == 0);
     }
 
 }
