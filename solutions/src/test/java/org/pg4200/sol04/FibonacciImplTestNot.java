@@ -1,6 +1,6 @@
 package org.pg4200.sol04;
 
-import org.pg4200.ex04.Fibonacci;
+import org.pg4200.ex04.IFibonacci;
 import org.pg4200.ex04.FibonacciTestTemplate;
 
 
@@ -10,7 +10,7 @@ import org.pg4200.ex04.FibonacciTestTemplate;
 public class FibonacciImplTestNot extends FibonacciTestTemplate {
 
     @Override
-    protected Fibonacci getInstance() {
+    protected IFibonacci getInstance() {
         return new FibonacciImpl();
     }
 }

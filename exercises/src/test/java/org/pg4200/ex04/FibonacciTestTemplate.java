@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public abstract class FibonacciTestTemplate {
 
 
-    protected abstract Fibonacci getInstance();
+    protected abstract IFibonacci getInstance();
 
 
     @Test
