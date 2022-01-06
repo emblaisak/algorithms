@@ -17,7 +17,9 @@ public class MixedSort extends OptimizedBubbleSort implements MySort{
             return;
         }
 
-        mergeSort(0, array.length - 1, array);
+        if (!isSorted(array)) {
+            mergeSort(0, array.length - 1, array);
+        }
     }
 
     public <T extends Comparable<T>> T[] mergeSort(int low, int high, T[] array) {
@@ -54,7 +56,6 @@ public class MixedSort extends OptimizedBubbleSort implements MySort{
     }
 
     public <T extends Comparable<T>> T[] merge(T[] array1, T[] array2) {
-
         int indexA = 0;
         int indexB = 0;
         int mergeIndex = 0;
