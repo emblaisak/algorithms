@@ -13,20 +13,14 @@ public class MixedSort extends OptimizedBubbleSort implements MySort{
 
     @Override
     public <T extends Comparable<T>> void sort(T[] array) {
-        if (array == null) {
-            return;
-        }
-
-        T[] merge;
-
         if (!isSorted(array)) {
-            merge = mergeSort(0, array.length - 1, array);
-        } else {
-            merge = null;
-        }
+            T[] merge;
 
-        for (int i = 0; i < array.length; i++) {
-            array[i] = merge[i];
+            merge = mergeSort(0, array.length - 1, array);
+
+            for (int i = 0; i < array.length; i++) {
+                array[i] = merge[i];
+            }
         }
     }
 
@@ -56,6 +50,10 @@ public class MixedSort extends OptimizedBubbleSort implements MySort{
     }
 
     private <T extends Comparable<T>> boolean isSorted(T[] array) {
+        if (array == null) {
+            return true;
+        }
+
         for (int i = 0; i < array.length - 2; i++) {
             if (array[i].compareTo(array[i+1]) > 0) {
                 return false;
