@@ -17,8 +17,16 @@ public class MixedSort extends OptimizedBubbleSort implements MySort{
             return;
         }
 
+        T[] merge;
+
         if (!isSorted(array)) {
-            mergeSort(0, array.length - 1, array);
+            merge = mergeSort(0, array.length - 1, array);
+        } else {
+            merge = null;
+        }
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = merge[i];
         }
     }
 
